@@ -1,3 +1,8 @@
+import * as mycart from '../data/cart.js' ;
+import { products as amazonproducts } from '../data/products.js';
+
+let cart = mycart.cart ;
+let products = amazonproducts ;
 let productsHtml = "" ;
 
 products.forEach((element) => {
@@ -53,28 +58,8 @@ document.querySelector('.products-grid').innerHTML = productsHtml ;
 
 document.querySelectorAll('.js-cart').forEach(element => {
     element.addEventListener('click' , () => {
-        let cartexist ;
-        cart.forEach(cartelement => {
-            if(cartelement.id === element.dataset.productId ){
-                cartexist = cartelement ;
-            }
-        }) ;
-        if(cartexist){
-            cartexist.quantity +=1 ;
-        }
-        else{
-            cart.push({
-                id : element.dataset.productId  ,
-                quantity : 1 
-            } ) ;
-        } 
-        let cartQuantity = 0 ;
-        cart.forEach(element => {
-            cartQuantity += element.quantity ;
-        }) ;
-        document.querySelector('.cart-quantity').innerHTML = cartQuantity ; 
+        let productId = element.dataset.productId ;
+        mycart.addtoCart(productId) ;
+        mycart.updateQuantity() ;
     });
 });
-
-document.body.addEventListener('click' , () => {
-})
