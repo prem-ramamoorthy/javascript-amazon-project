@@ -3,24 +3,6 @@ import {products} from '../data/products.js' ;
 import { fixmoney } from './utils/requiredFunctions.js';
 
 let cart = mycart.cart ;
-cart = [
-    {
-        "id": "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-        "quantity": 1
-    },
-    {
-        "id": "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
-        "quantity": 1
-    },
-    {
-        "id": "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
-        "quantity": 1
-    },
-    {
-        "id": "5968897c-4d27-4872-89f6-5bcb052746d7",
-        "quantity": 1
-    }
-]
 let checkoutcontainer = `` ;
 
 function getproductdetail(id) {
