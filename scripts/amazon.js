@@ -61,5 +61,6 @@ document.querySelectorAll('.js-cart').forEach(element => {
         let productId = element.dataset.productId ;
         mycart.addtoCart(productId) ;
         mycart.updateQuantity() ;
+        console.log(mycart.cart) ;
     });
 });

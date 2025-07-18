@@ -1,11 +1,3 @@
-import {products} from '../data/products.js' ;
-
-export function getproductdetail(id) {
-    let match = "" ;
-    products.forEach(productelement => {
-        if(productelement.id === id ) {
-            match = productelement ;
-        }
-    }) ;
-    return match ;
+export function fixmoney(money) {
+    return (money / 100 .toFixed(2)) ;
 }

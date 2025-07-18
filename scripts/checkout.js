@@ -1,13 +1,41 @@
 import * as mycart from '../data/cart.js' ;
-import { getproductdetail } from './utils/requiredFunctions.js';
+import {products} from '../data/products.js' ;
+import { fixmoney } from './utils/requiredFunctions.js';
 
 let cart = mycart.cart ;
-
+cart = [
+    {
+        "id": "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+        "quantity": 1
+    },
+    {
+        "id": "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+        "quantity": 1
+    },
+    {
+        "id": "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
+        "quantity": 1
+    },
+    {
+        "id": "5968897c-4d27-4872-89f6-5bcb052746d7",
+        "quantity": 1
+    }
+]
 let checkoutcontainer = `` ;
+
+function getproductdetail(id) {
+    let match = "" ;
+    products.forEach(productelement => {
+        if(productelement.id === id ) {
+            match = productelement ;
+        }
+    }) ;
+    return match ;
+}
 
 cart.forEach(cartelement => {
     const productelement = getproductdetail(cartelement.id) ;
-    checkoutcontainer += `<div class="cart-item-container">
+    checkoutcontainer += `<div class="cart-item-container js-container-id-${productelement.id}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -20,7 +48,7 @@ cart.forEach(cartelement => {
                   ${productelement.name}
                 </div>
                 <div class="product-price">
-                  $${productelement.priceCents / 100 .toFixed(2)}
+                  $${fixmoney(productelement.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -29,7 +57,7 @@ cart.forEach(cartelement => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary" data-productid = ${productelement.id}>
                     Delete
                   </span>
                 </div>
@@ -79,3 +107,10 @@ cart.forEach(cartelement => {
 });
 
 document.querySelector('.order-summary').innerHTML = checkoutcontainer ;
+document.querySelectorAll('.delete-quantity-link').forEach((link) => {
+    link.addEventListener('click' , ()=>{
+        const partid = link.dataset.productid ;
+        mycart.removecartproduct(partid) ;
+        document.querySelector(`.js-container-id-${partid}`).remove() ;
+    });
+});
