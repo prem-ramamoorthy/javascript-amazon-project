@@ -15,3 +15,13 @@ export const deliverydetails =  [
         priceCents : 999 
     }
 ] ;
+
+export function getdeliverydetail(id) {
+      let match = "" ;
+      deliverydetails.forEach(deliveryelement => {
+          if(deliveryelement.id === id ) {
+              match = deliveryelement ;
+          }
+      }) ;
+      return match ;
+  }
