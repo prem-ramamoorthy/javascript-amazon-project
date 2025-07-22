@@ -2,7 +2,7 @@ import {getproductdetail} from '../../data/products.js' ;
 import {cart} from '../../data/cart.js' ;
 import {fixmoney} from '../utils/requiredFunctions.js' ;
 import { getdeliverydetail } from '../../data/deliverydetails.js';
-import '../../data/cart-oop.js' ;
+import '../../data/cart-class.js' ;
 
 export function renderPaymentSummary() {
     let itemstotal = 0 ;
