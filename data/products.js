@@ -1,3 +1,5 @@
+import {fixmoney} from '../scripts/utils/requiredFunctions.js';
+
 export function getproductdetail(id) {
       let match = "" ;
       products.forEach(productelement => {
@@ -9,6 +11,29 @@ export function getproductdetail(id) {
   }
 
   
+class Product{
+  id ;
+  image ;
+  name ;
+  rating ;
+  priceCents ; 
+  keywords ;
+  constructor(productdetails){
+    this.id = productdetails.id ;
+    this.image = productdetails.image ;
+    this.name = productdetails.name ;
+    this.rating = productdetails.rating ;
+    this.priceCents = productdetails.priceCents ;
+    this.keywords = productdetails.keywords ;
+  }
+  getImage() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`
+  }
+  getPrice() {
+    return `$${fixmoney(this.priceCents)}`
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -668,4 +693,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productdetails) => {
+  return new Product(productdetails) ;
+});
