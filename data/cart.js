@@ -84,6 +84,5 @@ export function updateDeliveryOption(productid , deliveryOptionid){
             savetostorage() ;
         }
     }) ;
-    console.log(cart) ;
     savetostorage() ;
 }

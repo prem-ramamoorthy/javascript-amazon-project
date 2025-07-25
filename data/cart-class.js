@@ -90,5 +90,3 @@ class Cart{
 }
 
 let cart = new Cart('cart-oop')  ;
-
-console.log(cart) ;

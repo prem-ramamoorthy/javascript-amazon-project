@@ -49,6 +49,48 @@ class clothing extends Product {
   }
 }
 
+export let products = [] ;
+
+export function fetchProducts(renderFunc){
+  const promise = fetch("https://supersimplebackend.dev/products").then((response) => {
+    console.log(response) ;
+    return response.json() ;
+  }).then((productsall) => {
+    console.log(productsall) ;
+    products = productsall.map((productdetails) => {
+      if(productdetails.type === 'clothing'){
+        return new clothing(productdetails) ;
+      }
+      return new Product(productdetails) ;
+    });
+  }) ;
+  return promise ;
+}
+
+fetchProducts().then((value) => {
+  console.log(value) ;
+}) ;
+
+// export function getProducts(renderFunc) {
+//   const xhr = new XMLHttpRequest() ;
+
+//   xhr.addEventListener('load', () => {
+//     products = JSON.parse(xhr.response).map((productdetails) => {
+//       if(productdetails.type === 'clothing'){
+//         return new clothing(productdetails) ;
+//       }
+//       return new Product(productdetails) ;
+//     });
+//     renderFunc() ;
+//   });
+
+//   xhr.open("GET" , "https://supersimplebackend.dev/products") ;
+//   xhr.send() ;
+// }
+
+// getProducts() ;
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -713,4 +755,4 @@ export const products = [
     return new clothing(productdetails) ;
   }
   return new Product(productdetails) ;
-});
+}); */

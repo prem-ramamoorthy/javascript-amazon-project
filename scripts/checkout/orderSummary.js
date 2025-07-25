@@ -5,7 +5,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {getproductdetail} from '../../data/products.js' ;
 import { renderPaymentSummary } from '../../scripts/checkout/paymentSummary.js';
 
-function renderPage() {
+export function renderPage() {
   renderPaymentSummary() ;
   let cart = mycart.cart ;
   let checkoutcontainer = `` ;
